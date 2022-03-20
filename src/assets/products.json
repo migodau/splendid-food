@@ -38,5 +38,10 @@
     "name": "onion",
     "emoji": "🧅",
     "description": "fibers, vitamin C, folate (B9), vitamin B6, and potassium!"
+  },
+  {
+    "name": "pretzel",
+    "emoji": "🥨",
+    "description": "happiness in small chunks of carb"
   }
 ]
