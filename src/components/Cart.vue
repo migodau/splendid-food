@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-button" :class="{ active: showCart }" @click="toggleCart()">🛒 Cart ({{ totalQuantity }})</div>
+  <div class="toggle-cart-button" :class="{ active: showCart }" @click="toggleCart()">🛒 Cart ({{ totalQuantity }})</div>
 
   <div class="cart" v-if="showCart">
     <div class="no-items" v-if="!cart.length">
@@ -12,23 +12,31 @@
         <div class="cart-item__price">${{ (item.quantity * item.product.price).toFixed(2) }}</div>
         <div class="cart-item__remove" @click="$emit('removeItem', index)">X</div>
       </div>
+      
+      <hr/>
+    
+      <div class="total">
+        💰 Total: <span class="total-price">${{ totalPrice }}</span>
+      </div>
+
+      <div class="checkout">
+        <button class="btn btn-success checkout-button">proceed to checkout</button>
+      </div>
     </div>
 
-    <hr/>
     
-    <div class="total">
-      Total: <span class="total-price">${{ totalPrice }}</span>
-    </div>
+
+
   </div>
 </template>
 
 <style scoped>
-.cart-button {
+.toggle-cart-button {
   padding: 8px;
   cursor: pointer;
 }
 
-.cart-button.active {
+.toggle-cart-button.active {
   color: hsla(160, 100%, 37%, 1);
 }
 .cart {
@@ -68,6 +76,11 @@
 
 .total-price {
   font-weight: 700;
+}
+
+.checkout {
+  text-align: center;
+  margin-top: 16px;
 }
 
 </style>
