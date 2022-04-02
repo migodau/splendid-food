@@ -1,20 +1,22 @@
-<script setup>
-</script>
-
 <template>
-  <header>
-    <h1 class="header__title">🥦 Splendid Food 🍎</h1>
-    <div class="menu">
-      <div class="menu__item">
-        <router-link to="/">Home</router-link>
+  <main class="page-wrapper">
+    <header>
+      <h1 class="header__title">🥦 Splendid Food 🍎</h1>
+      <div class="menu">
+        <div class="menu__item">
+          <router-link to="/">Home</router-link>
+        </div>
+        <div class="menu__item">
+          <router-link to="/products">Products</router-link>
+        </div>
       </div>
-      <div class="menu__item">
-        <router-link to="/products">Products</router-link>
+      <div class="cart-button-wrapper">
+        <Cart :cart="cart" @removeItem="removeFromCart" />
       </div>
-    </div>
-  </header>
+    </header>
 
-  <RouterView />
+    <RouterView :addToCart="addToCart" />
+  </main>
 </template>
 
 <style scoped>
@@ -22,30 +24,50 @@
   font-weight: normal;
 }
 
+.page-wrapper {
+  margin: 0;
+  padding: 0;
+  padding-top: 88px;
+}
+
 header {
+  position: fixed;
+  top: 0;
   line-height: 1.5;
   width: 100%;
-  padding: 0 24px;
+  padding: 8px 24px;
   display: flex;
   margin: 16px 0;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px #ccc solid;
+  z-index: 10;
 }
 
 .header__title {
   font-weight: 700;
   padding-right: 16px;
   border-right: #ddd 1px solid;
+  white-space: nowrap;
 }
 
 .menu {
   display: flex;
   margin-left: 16px;
   gap: 16px;
+  width: 100%;
 }
 
 .menu__item {
   height: 100%;
   display: flex;
   align-items: center;
+  white-space: nowrap;
+}
+
+.cart-button-wrapper {
+  float: right;
+  white-space: nowrap;
 }
 
 a,
@@ -87,3 +109,28 @@ nav a:first-of-type {
 }
 
 </style>
+
+<script>
+  import Cart from '@/components/Cart.vue';
+
+  export default {
+    components: {
+      Cart
+    },
+    data() {
+      return {
+        cart: [],
+      }
+    },
+    methods: {
+        addToCart(product, quantity) {
+          console.log('addToCart', { product, quantity })
+          const cartItem = { product, quantity };
+          this.cart.push(cartItem);
+        },
+        removeFromCart(itemIndex) {
+          this.cart.splice(itemIndex, 1);
+        }
+    }
+  }
+</script>
