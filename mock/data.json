@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "carrot",
+      "emoji": "🥕",
+      "description": "beta carotene, fiber, vitamin K1, potassium, and antioxidants!",
+      "price": 5.79,
+      "recommended": false
+    },
+    {
+      "id": "2",
+      "name": "broccoli",
+      "emoji": "🥦",
+      "description": "fiber, vitamin C, vitamin K, iron, protein, and potassium!",
+      "price": 3.50,
+      "recommended": true
+    },
+    {
+      "id": "3",
+      "name": "tomato",
+      "emoji": "🍅",
+      "description": "vitamin C, potassium, vitamin K1, and folate (vitamin B9)!",
+      "price": 4.83,
+      "recommended": true
+    },
+    {
+      "id": "4",
+      "name": "banana",
+      "emoji": "🍌",
+      "description": "fiber, potassium, vitamin B6, vitamin C!",
+      "price": 4.25,
+      "recommended": false
+    },
+    {
+      "id": "5",
+      "name": "red apple",
+      "emoji": "🍎",
+      "description": "fiber, antioxidants, vitamins C, E, K, B1, and B6, and potassium!",
+      "price": 3.40,
+      "recommended": false
+    },
+    {
+      "id": "6",
+      "name": "lemon",
+      "emoji": "🍋",
+      "description": "fiber and a lot of of Vitamin C!",
+      "price": 5.00,
+      "recommended": true
+    },
+    {
+      "id": "7",
+      "name": "avocado",
+      "emoji": "🥑",
+      "description": "potassium, vitamins C, D and B6, calcium, iron, and magnesium!",
+      "price": 6.10,
+      "recommended": false
+    },
+    {
+      "id": "8",
+      "name": "onion",
+      "emoji": "🧅",
+      "description": "fibers, vitamin C, folate (B9), vitamin B6, and potassium!",
+      "price": 3.50,
+      "recommended": false
+    },
+    {
+      "id": "9",
+      "name": "pretzel",
+      "emoji": "🥨",
+      "description": "happiness in small chunks of carb",
+      "price": 9.80,
+      "recommended": false
+    }
+  ]
+}

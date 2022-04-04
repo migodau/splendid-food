@@ -22,7 +22,8 @@
 
 <script>
   import ProductCard from '@/components/ProductCard.vue';
-  import products from '@/assets/products.json'
+  // import products from '@/assets/products.json'
+  import { getProducts } from '@/services/products';
 
   export default {
     props: ['addToCart'],
@@ -31,8 +32,11 @@
     },
     data() {
       return {
-        products: products,
+        products: [],
       }
+    },
+    beforeMount() {
+      getProducts().then(data => this.products = data);
     },
     methods: {
       addProduct(prod, qtd) {
