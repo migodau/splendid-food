@@ -8,8 +8,8 @@ const getProducts = async () => {
 }
 
 const getRecommended = async () => {
-  let data = await fetch(API_URL + '/products/recommended')
-    .then(response => response.json())
+  let data = await getProducts()
+    .then(response => response.filter(p => p.recommended))
     .catch(error => console.error({ error }));
   return data;
 }
