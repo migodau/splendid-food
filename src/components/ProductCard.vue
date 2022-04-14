@@ -63,7 +63,6 @@
 <script>
 export default {
   props: ['product'],
-  emits: ['addProduct'],
   data() {
     return {
       quantity: 0
@@ -71,7 +70,10 @@ export default {
   },
   methods: {
     add() {
-      this.$emit('addProduct', this.product, this.quantity);
+      this.$store.dispatch(
+        'addToCart',
+        { product: this.product, quantity: this.quantity }
+      );
       this.quantity=0;
     }
   }

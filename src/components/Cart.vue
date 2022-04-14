@@ -1,22 +1,22 @@
 <template>
-  <div class="toggle-cart-button" :class="{ active: showCart }" @click="toggleCart()">🛒 Cart ({{ totalQuantity }})</div>
+  <div class="toggle-cart-button" :class="{ active: showCart }" @click="toggleCart()">🛒 Cart ({{ $store.getters.totalItems }})</div>
 
   <div class="cart" v-if="showCart">
-    <div class="no-items" v-if="!cart.length">
+    <div class="no-items" v-if="!$store.state.cart.length">
       <p>The cart is empty</p>
     </div>
-    <div class="cart-items" v-if="!!cart.length">
-      <div v-for="(item, index) of cart" :key="index" class="cart-item">
+    <div class="cart-items" v-if="!!$store.state.cart.length">
+      <div v-for="(item, index) of $store.state.cart" :key="index" class="cart-item">
         <div class="cart-item__name">{{item.product.emoji}} {{item.product.name}}</div>
         <div class="cart-item__quantity">{{item.quantity}} x ${{item.product.price}}</div>
         <div class="cart-item__price">${{ (item.quantity * item.product.price).toFixed(2) }}</div>
-        <div class="cart-item__remove" @click="$emit('removeItem', index)">X</div>
+        <div class="cart-item__remove" @click="$store.dispatch('removeFromCart', index)">X</div>
       </div>
       
       <hr/>
     
       <div class="total">
-        💰 Total: <span class="total-price">${{ totalPrice }}</span>
+        💰 Total: <span class="total-price">${{ $store.getters.totalPrice }}</span>
       </div>
 
       <div class="checkout">
@@ -88,7 +88,6 @@
 <script>
 export default {
   props: [ 'cart' ],
-  emits: ['removeItem'],
   data() {
     return {
       showCart: false,
@@ -99,15 +98,5 @@ export default {
       this.showCart = !this.showCart;
     },
   },
-  computed: {
-    totalQuantity() {
-      return this.cart.reduce((acc, item) => acc + item.quantity, 0);
-    },
-    totalPrice() {
-      return this.cart.reduce(
-        (acc, item) => acc + (item.quantity * item.product.price),
-         0).toFixed(2);
-    }
-  }
 };
 </script>

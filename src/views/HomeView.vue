@@ -1,14 +1,14 @@
 <template>
   <main>
     <h2 class="display-3">Welcome to Splendid Food!</h2>
+    <p>teste: {{ $store.state.count }}</p>
 
     <div class="recommendations">
       <h3>Our recommendations 🔥</h3>
       <div class="recommendation-list">
         <ProductCard 
         v-for="(product, index) of recommended" 
-        :product="product" v-bind:key="index" 
-        @addProduct="addToCart"
+        :product="product" v-bind:key="index"
       />
       </div>
     </div>
@@ -32,7 +32,6 @@
   import { getRecommended } from '@/services/products';
 
   export default {
-    props: ['addToCart'],
     components: {
       ProductCard,
     },
