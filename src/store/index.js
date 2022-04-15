@@ -9,7 +9,16 @@ const store = createStore({
   },
   mutations: {
     addToCart (state, cartItem) {
-        state.cart.push(cartItem);
+        const itemIndex = state.cart
+            .findIndex(p => p.product.id === cartItem.product.id);
+
+        if (itemIndex < 0) {
+            state.cart.push(cartItem);
+            return;
+        }
+
+        state.cart[itemIndex].quantity += cartItem.quantity;
+        
     },
     removeFromCart(state, itemIndex) {
         state.cart.splice(itemIndex, 1);
