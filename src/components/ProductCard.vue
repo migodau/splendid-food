@@ -14,6 +14,7 @@
         class="form-control form-control-sm"
         name="product_quantity"
         type="number"
+        min="1" max="30"
         placeholder="0"
         v-model="quantity"
       />
@@ -61,9 +62,14 @@
 </style>
 
 <script>
+import { useCartStore } from '@/store/cart';
+
 export default {
+  setup() {
+    const store = useCartStore();
+    return { store };
+  },
   props: ['product'],
-  emits: ['addProduct'],
   data() {
     return {
       quantity: 0
@@ -71,9 +77,9 @@ export default {
   },
   methods: {
     add() {
-      this.$emit('addProduct', this.product, this.quantity);
+      this.store.addToCart(this.product, this.quantity);
       this.quantity=0;
-    }
+    },
   }
 };
 </script>

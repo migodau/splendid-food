@@ -5,7 +5,6 @@
       <ProductCard 
         v-for="(product, index) of products" 
         :product="product" v-bind:key="index" 
-        @addProduct="addToCart"
       />
     </div>
   </main>
@@ -26,7 +25,6 @@
   import { getProducts } from '@/services/products';
 
   export default {
-    props: ['addToCart'],
     components: {
       ProductCard
     },
@@ -38,10 +36,5 @@
     beforeMount() {
       getProducts().then(data => this.products = data);
     },
-    methods: {
-      addProduct(prod, qtd) {
-        console.log(prod, qtd)
-      }
-    }
   }
 </script>
