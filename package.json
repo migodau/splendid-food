@@ -5,7 +5,8 @@
     "start": "concurrently \"npm:dev\" \"npm:mock\"",
     "dev": "vite",
     "mock": "json-server --watch mock/data.json --port 3004 --routes mock/routes.json",
-    "build": "vite build",
+    "build": "vite build --mode development",
+    "build:prod": "vite build",
     "preview": "vite preview --port 5050",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },

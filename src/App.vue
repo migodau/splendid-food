@@ -16,6 +16,7 @@
     </header>
 
     <RouterView />
+
   </main>
 </template>
 
@@ -117,5 +118,9 @@ nav a:first-of-type {
     components: {
       Cart
     },
+    mounted() {
+     console.log(import.meta.env.MODE);
+    }
+    
   }
 </script>
