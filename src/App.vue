@@ -11,11 +11,12 @@
         </div>
       </div>
       <div class="cart-button-wrapper">
-        <Cart :cart="cart" @removeItem="removeFromCart" />
+        <Cart />
       </div>
     </header>
 
-    <RouterView :addToCart="addToCart" />
+    <RouterView />
+
   </main>
 </template>
 
@@ -117,20 +118,9 @@ nav a:first-of-type {
     components: {
       Cart
     },
-    data() {
-      return {
-        cart: [],
-      }
-    },
-    methods: {
-        addToCart(product, quantity) {
-          console.log('addToCart', { product, quantity })
-          const cartItem = { product, quantity };
-          this.cart.push(cartItem);
-        },
-        removeFromCart(itemIndex) {
-          this.cart.splice(itemIndex, 1);
-        }
+    mounted() {
+     console.log(import.meta.env.MODE);
     }
+    
   }
 </script>

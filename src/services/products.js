@@ -1,7 +1,7 @@
-const API_URL = 'http://localhost:3004';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const getProducts = async () => {
-  let data = await fetch(API_URL + '/products')
+  let data = await fetch(apiUrl + '/products')
     .then(response => response.json())
     .catch(error => console.error({ error }));
   return data;

@@ -7,8 +7,7 @@
       <div class="recommendation-list">
         <ProductCard 
         v-for="(product, index) of recommended" 
-        :product="product" v-bind:key="index" 
-        @addProduct="addToCart"
+        :product="product" v-bind:key="index"
       />
       </div>
     </div>
@@ -31,8 +30,9 @@
   import ProductCard from '@/components/ProductCard.vue';
   import { getRecommended } from '@/services/products';
 
+  // import { useStore } from '@/store/cart'
+
   export default {
-    props: ['addToCart'],
     components: {
       ProductCard,
     },

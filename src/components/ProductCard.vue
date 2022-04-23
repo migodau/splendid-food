@@ -14,8 +14,11 @@
         class="form-control form-control-sm"
         name="product_quantity"
         type="number"
+        min="1" max="30"
         placeholder="0"
         v-model="quantity"
+        @keydown="validateQuantity"
+        @focus="clearIfZero"
       />
       <button 
         class="btn btn-success product-card__button" 
@@ -61,9 +64,14 @@
 </style>
 
 <script>
+import { useCartStore } from '@/store/cart';
+
 export default {
+  setup() {
+    const store = useCartStore();
+    return { store };
+  },
   props: ['product'],
-  emits: ['addProduct'],
   data() {
     return {
       quantity: 0
@@ -71,8 +79,26 @@ export default {
   },
   methods: {
     add() {
-      this.$emit('addProduct', this.product, this.quantity);
+      this.store.addToCart(this.product, this.quantity);
       this.quantity=0;
+    },
+    clearIfZero(ev) {
+      const val = ev.target.value;
+      if (parseInt(val) === 0) {
+        this.quantity = '';
+      }
+    },
+    validateQuantity(ev) {
+      if (ev.key === 'Backspace') {
+        return;
+      }
+
+      const key = parseFloat(ev.key);
+      const len = (this.quantity + '').length;
+      if (len === 2 || !Number.isInteger(key)) {
+        ev.preventDefault();
+        return false;
+      }
     }
   }
 };
